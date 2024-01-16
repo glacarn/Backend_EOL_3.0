@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    //origin: 'https://www.ecole-optique-lille.com/',
+    origin: 'https://www.ecole-optique-lille.com/',
     methods: ['POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     }))
@@ -14,9 +14,8 @@ app.use(cors({
 
 
 app.post('/preinscription', async (requete, reponse) => {
-    console.log(requete.body)
-    const { nom, prenom, formation, rappel, email, tel, commentaire, jpo } = requete.body;
-    //jpo = (jpo ? 'oui' : 'non');
+    let { nom, prenom, formation, rappel, email, tel, commentaire, jpo } = requete.body;
+    jpo = (jpo ? 'oui' : 'non');
     const mail = require('./envoiMail');
     mail.envoiMail(
         "Demande de préinscription de "+nom+" "+prenom+" depuis le site",
