@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'https://www.ecole-optique-lille.com/',
+    origin: process.env.ORIGIN_CORS,
     methods: ['POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     }))
